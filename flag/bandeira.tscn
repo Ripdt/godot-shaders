@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bplx61tinvwnv"]
+
+[ext_resource type="Shader" uid="uid://ctmjkfo1jctrl" path="res://flag/bandeira.gdshader" id="1_bqjrj"]
+[ext_resource type="Script" uid="uid://bo6tlwbnxject" path="res://mesh_instance_3d.gd" id="2_kh5s4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kh5s4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ftte0"]
+seamless = true
+noise = SubResource("FastNoiseLite_kh5s4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42sap"]
+render_priority = 0
+shader = ExtResource("1_bqjrj")
+shader_parameter/uv_offset_texture = SubResource("NoiseTexture2D_ftte0")
+shader_parameter/uv_offset_scale = Vector2(-0.2, -0.1)
+shader_parameter/time_scale = Vector2(0.3, 0)
+shader_parameter/face_distortion = 0.5
+shader_parameter/base_color = Vector3(1, 1, 1)
+shader_parameter/roughness = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_drxky"]
+material = SubResource("ShaderMaterial_42sap")
+size = Vector2(3, 2)
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_drxky")
+script = ExtResource("2_kh5s4")

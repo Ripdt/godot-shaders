@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq17fuyk8wuly"]
+
+[ext_resource type="Shader" uid="uid://ckwvq5gtumm31" path="res://dissolve/dissolve.gdshader" id="1_41u45"]
+[ext_resource type="Script" uid="uid://dkvjg2hay8uy5" path="res://dissolve/ball.gd" id="2_ktgx5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwunn"]
+render_priority = 0
+shader = ExtResource("1_41u45")
+shader_parameter/rgb = Color(0, 0, 0, 1)
+shader_parameter/dissolve_height = 0.08
+
+[sub_resource type="SphereMesh" id="SphereMesh_n5601"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999988, -0.00493926, 0, 0.00493926, 0.999988, 0, 0, 0, 1, 0, 0.0816672, 0)
+material_override = SubResource("ShaderMaterial_pwunn")
+mesh = SubResource("SphereMesh_n5601")
+script = ExtResource("2_ktgx5")
