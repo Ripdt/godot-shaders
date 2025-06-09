@@ -5,15 +5,18 @@ uniform float metallic : hint_range(0.0, 1.0) = 0.0;
 uniform vec3 albedo : source_color;
 
 uniform float vertex_offset_intensity = 0.1;
+uniform float breathing_offset = 0.5;
+
+varying float breathing;
 
 void vertex() {
-	float breathing = sin(TIME * 2.0) * 0.5 + 0.5;
+	breathing = sin(TIME * 2.0) * 0.5 + breathing_offset;
 	float dynamic_intensity = vertex_offset_intensity * breathing;
 	VERTEX += NORMAL * dynamic_intensity;
 }
 
 void fragment() {
-	ALBEDO = albedo;
+	ALBEDO = albedo * breathing;
 	ROUGHNESS = roughness;
 	METALLIC = metallic;
 }
