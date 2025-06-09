@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://yaq2xgp68emv"]
+
+[ext_resource type="Shader" uid="uid://dm8ojgfoe6rb5" path="res://breathing/breathing.gdshader" id="1_841q4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwbj0"]
+render_priority = 0
+shader = ExtResource("1_841q4")
+shader_parameter/roughness = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/albedo = Color(0.8, 0, 0, 1)
+shader_parameter/vertex_offset_intensity = 0.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f0a0d"]
+material = SubResource("ShaderMaterial_lwbj0")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_f0a0d")
